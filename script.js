@@ -27,9 +27,16 @@ piano.addEventListener('click', (event) => {
 		playKey(event.target);
 	}
 });
+
 piano.addEventListener('mouseover', (event) => {
 	if(event.buttons == 1) {
 		playKey(event.target);
+	}
+});
+
+piano.addEventListener('transitionend', (event) => {
+	if(event.propertyName === 'transform') {
+		event.target.classList.remove(keyActive);
 	}
 });
 
