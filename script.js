@@ -4,23 +4,35 @@
 
 
 
+window.addEventListener('keydown', (event) => {
+	pianoKeys.forEach( key => {
+		if('Key' + key.dataset.letter === event.code) {
+			playKey(key);
+		}
+		
+	});
+});
 
-//Piano key active style change
+function playKey(key) {
+	pianoKeys.forEach(k => k.classList.remove(keyActive));
+	key.classList.add(keyActive);
+	playNote(key.dataset.note);
+}
+
+
+//Piano keys
 const piano = document.querySelector('.piano')
 const pianoKeys = document.querySelectorAll('.piano-key');
 const keyActive = 'piano-key-active';
 
 piano.addEventListener('click', (event) => {
 	if(event.target.classList.contains('piano-key')) {
-		pianoKeys.forEach(key => key.classList.remove(keyActive));
-		event.target.classList.add(keyActive);
-		playKey(event.target.dataset.note);
+		playKey(event.target);
 	}
 });
 
 
-function playKey(note) {
-	console.log(note);
+function playNote(note) {
 	const audio = new Audio();
 	audio.src = `assets/audio/${note}.mp3`;
 	audio.currentTime = 0;
