@@ -14,9 +14,18 @@ piano.addEventListener('click', (event) => {
 	if(event.target.classList.contains('piano-key')) {
 		pianoKeys.forEach(key => key.classList.remove(keyActive));
 		event.target.classList.add(keyActive);
+		playKey(event.target.dataset.note);
 	}
 });
 
+
+function playKey(note) {
+	console.log(note);
+	const audio = new Audio();
+	audio.src = `assets/audio/${note}.mp3`;
+	audio.currentTime = 0;
+	audio.play();
+}
 
 // Switch buttons style change
 const switchToNotesBtn = document.querySelector('.btn-notes');
