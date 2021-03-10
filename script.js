@@ -18,12 +18,6 @@ piano.addEventListener('click', (event) => {
 });
 
 
-
-
-
-
-
-
 // Switch buttons style change
 const switchToNotesBtn = document.querySelector('.btn-notes');
 const switchToLettersBtn = document.querySelector('.btn-letters');
@@ -32,11 +26,15 @@ const btnActive = 'btn-active';
 switchToNotesBtn.addEventListener('click', () => {
 	switchToLettersBtn.classList.remove(btnActive);
 	switchToNotesBtn.classList.add(btnActive);
+
+	pianoKeys.forEach(key => key.classList.remove('piano-key-letter'));
 });
 
 switchToLettersBtn.addEventListener('click', () => {
 	switchToNotesBtn.classList.remove(btnActive);
 	switchToLettersBtn.classList.add(btnActive);
+
+	pianoKeys.forEach(key => key.classList.add('piano-key-letter'));
 });
 
 
