@@ -4,6 +4,13 @@
 
 
 
+
+//Piano keys
+const piano = document.querySelector('.piano')
+const pianoKeys = document.querySelectorAll('.piano-key');
+const keyActive = 'piano-key-active';
+
+// On keydown
 window.addEventListener('keydown', (event) => {
 	pianoKeys.forEach( key => {
 		if('Key' + key.dataset.letter === event.code) {
@@ -13,6 +20,20 @@ window.addEventListener('keydown', (event) => {
 	});
 });
 
+
+// On mouse click
+piano.addEventListener('click', (event) => {
+	if(event.target.classList.contains('piano-key')) {
+		playKey(event.target);
+	}
+});
+piano.addEventListener('mouseover', (event) => {
+	if(event.buttons == 1) {
+		playKey(event.target);
+	}
+});
+
+
 function playKey(key) {
 	pianoKeys.forEach(k => k.classList.remove(keyActive));
 	key.classList.add(keyActive);
@@ -20,19 +41,10 @@ function playKey(key) {
 }
 
 
-//Piano keys
-const piano = document.querySelector('.piano')
-const pianoKeys = document.querySelectorAll('.piano-key');
-const keyActive = 'piano-key-active';
-
-piano.addEventListener('click', (event) => {
-	if(event.target.classList.contains('piano-key')) {
-		playKey(event.target);
-	}
-});
-
-
 function playNote(note) {
+	if(!note) {
+		return;
+	}
 	const audio = new Audio();
 	audio.src = `assets/audio/${note}.mp3`;
 	audio.currentTime = 0;
