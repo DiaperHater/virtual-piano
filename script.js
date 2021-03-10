@@ -1,3 +1,26 @@
+
+
+
+
+
+
+// Switch buttons style change
+const switchToNotesBtn = document.querySelector('.btn-notes');
+const switchToLettersBtn = document.querySelector('.btn-letters');
+const btnActive = 'btn-active';
+
+switchToNotesBtn.addEventListener('click', () => {
+	switchToLettersBtn.classList.remove(btnActive);
+	switchToNotesBtn.classList.add(btnActive);
+});
+
+switchToLettersBtn.addEventListener('click', () => {
+	switchToNotesBtn.classList.remove(btnActive);
+	switchToLettersBtn.classList.add(btnActive);
+});
+
+
+
 // Fullscreen button
 const fullscreenBtn = document.querySelector('.fullscreen');
 fullscreenBtn.addEventListener('click', () => {
